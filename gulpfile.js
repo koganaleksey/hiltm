@@ -147,11 +147,11 @@ function browserSyncInit(done) {
 
 // DEPLOY TO GIT
 function deploy() {
-  return src('./dist')
+  return src('dist/**/*')
     .pipe(ghPages({
       remoteUrl: 'https://github.com/koganaleksey/hiltm.git',
       branch: 'build',
-      message: 'Automated push gulp'
+      message: 'Automated push via gulp'
     }));
 }
 
@@ -315,9 +315,9 @@ function minifyCss() {
 exports.development = series(cleanDist, copyFont, copyFavicon, jsVendor, cssVendor, copyImages, compileHTML, compileJS, resetPages, prettyHTML, compileSCSS, browserSyncInit, watchFiles);
 
 // PRODUCTION
-exports.production = series(cleanDist, compileSCSS, copyFont, copyFavicon, copyImages, compileHTML, concatScripts, minifyScripts, minifyCss, renameSources, prettyHTML, generateDocs, browserSyncInit);
+exports.production = series(cleanDist, compileSCSS, copyFont, copyFavicon, copyImages, compileHTML, concatScripts, minifyScripts, minifyCss, renameSources, prettyHTML, generateDocs, browserSyncInit, deploy);
 
-exports.deploy = deploy
+// exports.deploy = deploy
 
 // RUN ALL LINTERS
 exports.lint = series(htmlLint, scssLint, jsLint);
