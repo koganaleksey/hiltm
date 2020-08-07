@@ -12,10 +12,6 @@
     display: block;
 }
 
-#map {
-    height: 100%;
-}
-
 .cover {
     background-image: url("../img/world_map.svg");
     background-position: left top;
@@ -70,3 +66,20 @@
     opacity: 0.8;
     z-index: -1;
 }
+
+.mapouter {
+    position: relative;
+    text-align: left;
+    height: 100%;
+    width: 100%;
+}
+
+.gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    height: 100%;
+    width: 100%;
+}
+
+
+

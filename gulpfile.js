@@ -314,10 +314,8 @@ function minifyCss() {
 // DEVELOPMENT
 exports.development = series(cleanDist, copyFont, copyFavicon, jsVendor, cssVendor, copyImages, compileHTML, compileJS, resetPages, prettyHTML, compileSCSS, browserSyncInit, watchFiles);
 
-// PRODUCTION
+// PRODUCTION & DEPLOY
 exports.production = series(cleanDist, compileSCSS, copyFont, copyFavicon, copyImages, compileHTML, concatScripts, minifyScripts, minifyCss, renameSources, prettyHTML, generateDocs, browserSyncInit, deploy);
-
-// exports.deploy = deploy
 
 // RUN ALL LINTERS
 exports.lint = series(htmlLint, scssLint, jsLint);

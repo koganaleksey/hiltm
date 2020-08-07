@@ -6,7 +6,6 @@
   "scripts": {
     "development": "gulp development",
     "production": "gulp production",
-    "deploy": "gulp deploy",
     "linters": "gulp lint",
     "accessibility": "gulp a11y"
   },
