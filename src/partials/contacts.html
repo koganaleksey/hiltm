@@ -54,24 +54,23 @@
 
     </div>
 
-
     <div class="col-md-6 px-md-5">
 
         <h3 class="ru display-3 text-center text-md-left">Напишите нам</h3>
         <h3 class="en display-3 text-center text-md-left">Write to us</h3>
 
-        <form class="needs-validation" novalidate>
+        <form action="{{root}}send.php" method="POST" class="needs-validation" novalidate>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
                     <label for="name"><span class="ru">Имя</span><span class="en">Name</span></label>
-                    <input type="text" class="form-control" id="name" required>
+                    <input type="text" class="form-control" id="name" name="name" required>
                     <div class="invalid-feedback">
                         Пожалуйста введите Ваше Имя
                     </div>
                 </div>
                 <div class="col-md-12 mb-3">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" required>
+                    <input type="email" class="form-control" id="email" name="email" required>
                     <p class="ru small">Мы никогда не передадим вашу электронную почту кому-либо еще.</p>
                     <p class="en small">We will never share your email with anyone else.</p>
                     <div class="invalid-feedback">
@@ -79,8 +78,8 @@
                     </div>
                 </div>
                 <div class="col-md-12 mb-3">
-                    <label for="textarea"><span class="ru">Сообщение</span><span class="en">Message</span></label>
-                    <textarea class="form-control" id="textarea" rows="7" required></textarea>
+                    <label for="message"><span class="ru">Сообщение</span><span class="en">Message</span></label>
+                    <textarea class="form-control" id="message" name="message" rows="7" required></textarea>
                     <div class="invalid-feedback">
                         Пожалуйста введите Ваше сообщение
                     </div>

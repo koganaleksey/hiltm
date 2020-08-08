@@ -178,6 +178,15 @@ function copyFont() {
     .pipe(browserSync.stream());
 }
 
+function copyPHP() {
+  log(chalk.red.bold('---------------COPYING PHP INTO DIST FOLDER---------------'));
+  return src([
+    'src/assets/php/*',
+  ])
+    .pipe(dest('dist'))
+    .pipe(browserSync.stream());
+}
+
 // PLACES FAVICON ICO IN THE DIST FOLDER
 function copyFavicon() {
   log(chalk.red.bold('---------------COPYING FAVICON ICO INTO DIST FOLDER---------------'));
@@ -325,10 +334,10 @@ function minifyCss() {
 }
 
 // DEVELOPMENT
-exports.development = series(cleanDist, copyFont, copyFavicon, jsVendor, cssVendor, copyImages, compileHTML, compileJS, resetPages, prettyHTML, compileSCSS, browserSyncInit, watchFiles);
+exports.development = series(cleanDist, copyFont, copyPHP, copyFavicon, jsVendor, cssVendor, copyImages, compileHTML, compileJS, resetPages, prettyHTML, compileSCSS, browserSyncInit, watchFiles);
 
 // PRODUCTION & DEPLOY
-exports.production = series(cleanDist, compileSCSS, copyFont, copyFavicon, copyImages, compileHTML, concatScripts, minifyScripts, minifyCss, renameSources, prettyHTML, minifyHTML, generateDocs, browserSyncInit, deploy);
+exports.production = series(cleanDist, compileSCSS, copyFont, copyPHP, copyFavicon, copyImages, compileHTML, concatScripts, minifyScripts, minifyCss, renameSources, prettyHTML, minifyHTML, generateDocs, browserSyncInit, deploy);
 
 // RUN ALL LINTERS
 exports.lint = series(htmlLint, scssLint, jsLint);

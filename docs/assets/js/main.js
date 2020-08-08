@@ -17764,16 +17764,26 @@ $(document).ready(function () {
 
   // Language changer
 
+  if (navigator.language || navigator.userLanguage === 'ru_RU') {
+    document.documentElement.lang = 'ru';
+    document.title = 'Компания "Хил Гурлушык"'
+  } else {
+    document.documentElement.lang = 'en'
+    document.title = 'Company "Hil Gurlushyk"'
+  }
+
+
   $('.langen').on("click", function () {
     document.documentElement.lang = 'en'
+    document.title = 'Company "Hil Gurlushyk"'
   });
 
   $('.langru').on("click", function () {
     document.documentElement.lang = 'ru'
+    document.title = 'Компания "Хил Гурлушык"'
   });
 
   // END Language Changer
-
 
 
 
@@ -17829,8 +17839,6 @@ $(document).ready(function () {
     }, false);
   })();
   // End Form Validation
-
-
 
   //removeIf(production)
   console.log("document ready");
