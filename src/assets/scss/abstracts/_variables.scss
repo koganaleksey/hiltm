@@ -4,8 +4,9 @@
 // https://bootstrapvars.com/4.4/
 
 $theme-colors: (
-  "primary": #285180,
-  "secondary": #818A91
+  "primary": #134074,
+  "secondary": #6c757d,
+  "info": #85b9f4
 );
 
 // $red:                         #f05555;
@@ -13,13 +14,13 @@ $theme-colors: (
 // $gray-200:                    #e4e4e4;
 // $gray-900:                    #285180;
 // $beige-100:                   #0c0c0b;
-$primary:                       #285180;
-$secondary:                     #818A91;
+$primary:                       #134074;
+$secondary:                     #6c757d;
 // $success:                       $secondary;
-// $info:                          $gray-900;
+$info:                          #85b9f4;
 // $warning:                       $primary;
 // $danger:                        $red;
-$black:                       #000000;
+$black:                         #000000;
 
 
 // Text Colors

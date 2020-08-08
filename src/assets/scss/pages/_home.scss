@@ -19,7 +19,7 @@
 }
 
 .cooperation {
-    background: linear-gradient(86.51deg, #285180 2.87%, #85b9f4 97.12%);
+    background: linear-gradient(86.51deg, $primary 0%, $info 100%);
 }
 
 .team {
@@ -40,31 +40,14 @@
     top: 0;
     left: 0;
     background: transparent;
-    background-image: linear-gradient(86.51deg, #285180 2.87%, #85b9f4 97.12%);
+    background-image: linear-gradient(86.51deg, $primary 0%, $info 100%);
     mix-blend-mode: multiply;
     z-index: -4;
 }
 
 .director {
-    position: relative;
-    background: url("../img/director_bg.jpg");
-    background-size: cover;
-    background-position: top;
+    background: lighten($info, 22);
     z-index: -2;
-}
-
-.director::after {
-    content: "";
-    order: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(238, 244, 255, 0.95);
-    opacity: 0.8;
-    z-index: -1;
 }
 
 .mapouter {
@@ -80,6 +63,3 @@
     height: 100%;
     width: 100%;
 }
-
-
-

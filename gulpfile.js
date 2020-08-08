@@ -22,6 +22,7 @@ const sassLint = require('gulp-sass-lint');
 const htmllint = require('gulp-htmllint');
 const jshint = require('gulp-jshint');
 const htmlreplace = require('gulp-html-replace');
+const htmlMinimizer = require("gulp-html-minimizer");
 const newer = require('gulp-newer');
 const autoprefixer = require('gulp-autoprefixer');
 const accessibility = require('gulp-accessibility');
@@ -64,7 +65,7 @@ function compileHTML() {
       root: 'src/pages/',
       layouts: 'src/layouts/',
       // pageLayouts: {
-           // All pages inside src/pages/blog will use the blog.html layout
+      // All pages inside src/pages/blog will use the blog.html layout
       //     'blog': 'blog'
       // }
       partials: 'src/partials/',
@@ -130,7 +131,7 @@ function jsLint() {
 // WATCH FILES
 function watchFiles() {
   watch('src/**/*.html', compileHTML);
-  watch(['src/assets/scss/**/*.scss', 'src/assets/scss/*.scss'] , compileSCSS);
+  watch(['src/assets/scss/**/*.scss', 'src/assets/scss/*.scss'], compileSCSS);
   watch('src/assets/js/*.js', compileJS);
   watch('src/assets/img/**/*', copyImages);
 }
@@ -160,7 +161,7 @@ function deploy() {
 // COPIES AND MINIFY IMAGE TO DIST
 function copyImages() {
   log(chalk.red.bold('---------------OPTIMIZING IMAGES---------------'));
-  return src('src/assets/img/**/*.+(png|jpg|jpeg|gif|svg)')
+  return src('src/assets/img/**/*.+(webp|png|jpg|jpeg|gif|svg)')
     .pipe(newer('dist/assets/img/'))
     .pipe(imagemin())
     .pipe(dest('dist/assets/img/'))
@@ -171,8 +172,8 @@ function copyImages() {
 function copyFont() {
   log(chalk.red.bold('---------------COPYING FONTS INTO DIST FOLDER---------------'));
   return src([
-      'src/assets/font/*',
-    ])
+    'src/assets/font/*',
+  ])
     .pipe(dest('dist/assets/fonts'))
     .pipe(browserSync.stream());
 }
@@ -181,9 +182,9 @@ function copyFont() {
 function copyFavicon() {
   log(chalk.red.bold('---------------COPYING FAVICON ICO INTO DIST FOLDER---------------'));
   return src([
-      'src/assets/favicon/*',
-    ])
-    .pipe(dest('dist/'))
+    'src/assets/icons/*',
+  ])
+    .pipe(dest('dist/assets/icons'))
     .pipe(browserSync.stream());
 }
 
@@ -191,8 +192,8 @@ function copyFavicon() {
 function jsVendor() {
   log(chalk.red.bold('---------------COPY JAVASCRIPT VENDOR FILES INTO DIST---------------'));
   return src([
-      'src/assets/vendor/js/*',
-    ])
+    'src/assets/vendor/js/*',
+  ])
     .pipe(dest('dist/assets/vendor/js'))
     .pipe(browserSync.stream());
 }
@@ -201,8 +202,8 @@ function jsVendor() {
 function cssVendor() {
   log(chalk.red.bold('---------------COPY CSS VENDOR FILES INTO DIST---------------'));
   return src([
-      'src/assets/vendor/css/*',
-    ])
+    'src/assets/vendor/css/*',
+  ])
     .pipe(dest('dist/assets/vendor/css'))
     .pipe(browserSync.stream());
 }
@@ -219,6 +220,18 @@ function prettyHTML() {
     .pipe(dest('dist'));
 }
 
+
+// MINIFY HTML FILES
+function minifyHTML() {
+  log(chalk.red.bold('---------------HTML MINIFY---------------'));
+  return src('dist/**/*.html')
+    .pipe(htmlMinimizer({
+      collapseWhitespace: true
+    }))
+    .pipe(dest('dist'));
+}
+
+
 // DELETE DIST FOLDER
 function cleanDist(done) {
   log(chalk.red.bold('---------------REMOVING OLD FILES FROM DIST---------------'));
@@ -230,8 +243,8 @@ function cleanDist(done) {
 function generateDocs() {
   log(chalk.red.bold('---------------CREATING DOCS---------------'));
   return src([
-      'dist/**/*',
-    ])
+    'dist/**/*',
+  ])
     .pipe(dest('docs'))
     .pipe(browserSync.stream());
 }
@@ -269,13 +282,13 @@ function renameSources() {
 function concatScripts() {
   log(chalk.red.bold('---------------CONCATINATE SCRIPTS---------------'));
   return src([
-      'src/assets/vendor/js/jquery.js',
-      'src/assets/vendor/js/popper.js',
-      'src/assets/vendor/js/bootstrap.js',
-      'src/assets/js/util/autoPadding.js',
-      'src/assets/js/util/crossPlatform.js',
-      'src/assets/js/*'
-    ])
+    'src/assets/vendor/js/jquery.js',
+    'src/assets/vendor/js/popper.js',
+    'src/assets/vendor/js/bootstrap.js',
+    'src/assets/js/util/autoPadding.js',
+    'src/assets/js/util/crossPlatform.js',
+    'src/assets/js/*'
+  ])
     .pipe(sourcemaps.init())
     .pipe(concat('main.js'))
     .pipe(sourcemaps.write('./'))
@@ -300,9 +313,9 @@ function minifyScripts() {
 function minifyCss() {
   log(chalk.red.bold('---------------MINIFY CSS---------------'));
   return src([
-      'src/assets/vendor/css/**/*',
-      'dist/assets/css/main.css'
-    ])
+    'src/assets/vendor/css/**/*',
+    'dist/assets/css/main.css'
+  ])
     .pipe(sourcemaps.init())
     .pipe(concat('main.css'))
     .pipe(sourcemaps.write('./'))
@@ -315,7 +328,7 @@ function minifyCss() {
 exports.development = series(cleanDist, copyFont, copyFavicon, jsVendor, cssVendor, copyImages, compileHTML, compileJS, resetPages, prettyHTML, compileSCSS, browserSyncInit, watchFiles);
 
 // PRODUCTION & DEPLOY
-exports.production = series(cleanDist, compileSCSS, copyFont, copyFavicon, copyImages, compileHTML, concatScripts, minifyScripts, minifyCss, renameSources, prettyHTML, generateDocs, browserSyncInit, deploy);
+exports.production = series(cleanDist, compileSCSS, copyFont, copyFavicon, copyImages, compileHTML, concatScripts, minifyScripts, minifyCss, renameSources, prettyHTML, minifyHTML, generateDocs, browserSyncInit, deploy);
 
 // RUN ALL LINTERS
 exports.lint = series(htmlLint, scssLint, jsLint);
