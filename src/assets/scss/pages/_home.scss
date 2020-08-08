@@ -24,7 +24,7 @@
 
 .team {
     position: relative;
-    background: url("../img/team.jpg");
+    background: url("../img/team.webp");
     background-size: cover;
     background-position: center;
     z-index: -3;
@@ -48,6 +48,11 @@
 .director {
     background: lighten($info, 22);
     z-index: -2;
+}
+
+#gmap_canvas {
+    height: 260px;
+    width: 100%;
 }
 
 .mapouter {
