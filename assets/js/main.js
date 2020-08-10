@@ -17787,6 +17787,21 @@ $(document).ready(function () {
   // END Language Changer
 
 
+  // Cover img effect
+
+  const img = document.querySelector('#equipment-img');
+  const windowWidth = window.innerWidth / 5;
+  const windowHeight = window.innerHeight / 5;
+
+  img.addEventListener('mousemove', (e) => {
+    const mouseX = e.clientX / windowWidth;
+    const mouseY = e.clientY / windowHeight;
+
+    img.style.transform = `translate3d(-${mouseX}%, -${mouseY}%, 0)`;
+  });
+
+// END Cover img effect
+
 
   // Burger Menu
 
