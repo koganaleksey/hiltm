@@ -18,6 +18,17 @@
     background-repeat: no-repeat;
 }
 
+.equipment-wrap {
+    background-image: url("../img/pipelayer-20.webp");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: right top;
+}
+
+#equipment-img {
+    transition: 0.2s;
+}
+
 .cooperation {
     background: linear-gradient(86.51deg, $primary 0%, $info 100%);
 }
