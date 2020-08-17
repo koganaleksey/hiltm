@@ -1,53 +1,19 @@
-<?php
-require('actions/ErrorHandler.php');
-require('actions/Validator.php');
-require('actions/Session.php');
+<?php 
+if(isset($_POST['submit'])){
+    $to = "koganaleksey@mail.ru; // this is your Email address
+    $from = $_POST['email']; // this is the sender's Email address
+    $name = $_POST['name'];
+    $subject = "Form submission";
+    $subject2 = "Copy of your form submission";
+    $message = $name . " wrote the following:" . "\n\n" . $_POST['message'];
+    $message2 = "Here is a copy of your message " . $name . "\n\n" . $_POST['message'];
 
-$errorHandler = new ErrorHandler;
-
-
-    if (!empty($_POST)) {
-            $validator = new Validator($errorHandler);
-            $validation = $validator->check($_POST, [
-      				'name' => [
-      					'required' => true,
-      					'maxlength' => 20,
-      					'minlength' => 3
-      				],
-      				'email' => [
-      					'required' => true,
-      					'maxlength' => 20,
-      					'minlength' => 3,
-      					'email' => true
-      				],
-      				'message' => [
-      					'required' => true,
-      					'minlength' => 6,
-      					'maxlength' => 900
-      				]
-
-        	]);
-
-            if ($validator->fails()) {
-                $errors = $validator->errors()->all();
-                //header('Location: '. '../feedback.php');
-				      } else {
-                
-                $to      = 'koganaleksey@mail.ru';
-                $subject = $_POST['name'];
-                $message = $_POST['message'];
-                $headers = array(
-                          'From' => $_POST['email'],
-                          // 'Reply-To' => 'ikoganaleksey@yandex.ru',
-                          );
-    
-                $mail = mail($to, $subject, $message, implode("\r\n", $headers));
-
-                if($mail){
-                  Session::flash('success', 'Сообщение успешно отправлено');
-                  
-                }
-
-              }
-}
-?><script>alert("Sorry, Its Invalid");document.location="/";</script>
+    $headers = "From:" . $from;
+    $headers2 = "From:" . $to;
+    mail($to,$subject,$message,$headers);
+    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+    echo "Mail Sent. Thank you " . $name . ", we will contact you shortly.";
+    // You can also use header('Location: thank_you.php'); to redirect to another page.
+    // You cannot use header and echo together. It's one or the other.
+    }
+?>
