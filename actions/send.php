@@ -1,8 +1,8 @@
 <?php
 
 if (isset($_POST['email'])) {
-  $email_to = "koganaleksey@mail.ru";
-  $email_subject = "Отправка формы на сайте";
+  $email_to = "info@hiltm.com";
+  $email_subject = "Отправка формы c сайта hiltm.com";
 
   function died($error)
   {
