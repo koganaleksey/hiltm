@@ -47,11 +47,23 @@ if (isset($_POST['email'])) {
   @mail($email_to, $email_subject, $email_message, $headers);
 ?>
 
-  <div class="d-flex justify-content-center align-items-center text-center" style="width:100vw;height:100vh">
-    <h3 class="en" style="width:400px"><b>Thank you for contacting us.<b><br>We will be in touch with you soon.<br>You will now be redirected back to hiltm.com.</h3>
-  </div>
+  <!DOCTYPE html>
+  <html lang="ru">
 
-  <META http-equiv="refresh" content="2;URL=https://hiltm.com">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <META http-equiv="refresh" content="5;URL=https://hiltm.com">
+  </head>
+
+  <body>
+
+    <div class="d-flex justify-content-center align-items-center text-center" style="width:100vw;height:100vh">
+      <h3 class="en" style="width:400px"><b>Thank you for contacting us.<b><br>We will be in touch with you soon.<br>You will now be redirected back to hiltm.com.</h3>
+    </div>
+
+  </body>
 
 <?php
 }
