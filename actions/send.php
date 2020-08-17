@@ -50,4 +50,4 @@ $errorHandler = new ErrorHandler;
 
               }
 }
-?>
+?><script>alert("Sorry, Its Invalid");document.location="/";</script>
