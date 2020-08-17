@@ -44,7 +44,8 @@ if(isset($_POST['email'])) {
   @mail($email_to, $email_subject, $email_message, $headers);  
 ?>
 
-Thank you for contacting us. We will be in touch with you soon. You will now be redirected back to example.com.
+<div class="d-flex justify-content-center align-items-center">
+  <p style="width:400px">Thank you for contacting us. We will be in touch with you soon. You will now be redirected back to example.com.</p></div>
 <META http-equiv="refresh" content="2;URL=http://hiltm.com">
 
 <?php
