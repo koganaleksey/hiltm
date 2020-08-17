@@ -1,5 +1,5 @@
 <?php
-require('actions/Validator.php');
+require('./Validator.php');
 
 if(isset($_POST['email'])) {
   $email_to = "koganaleksey@mail.ru";
