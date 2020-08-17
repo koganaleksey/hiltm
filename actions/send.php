@@ -54,13 +54,15 @@ if (isset($_POST['email'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <META http-equiv="refresh" content="5;URL=https://hiltm.com">
+    <meta http-equiv="refresh" content="5;URL=https://hiltm.com">
+
+    <link rel="stylesheet" href="../assets/css/main.min.css">
   </head>
 
   <body>
 
     <div class="d-flex justify-content-center align-items-center text-center" style="width:100vw;height:100vh">
-      <h3 class="en" style="width:400px"><b>Thank you for contacting us.<b><br>We will be in touch with you soon.<br>You will now be redirected back to hiltm.com.</h3>
+      <h3 style="width:400px;"><span class="font-weight-bold text-success">Спасибо, что связались с нами.</span><br> Мы свяжемся с вами в ближайшее время.<br>Теперь вы будете перенаправлены обратно на <a href="hiltm.com">hiltm.com.</a></h3>
     </div>
 
   </body>
