@@ -1,69 +1,40 @@
 <?php
-require('./ErrorHandler.php');
-require('./Validator.php');
 
+if (isset($_POST['email'])) {
+  $email_to = "koganaleksey@mail.ru";
+  $email_subject = "Отправка формы на сайте";
 
-if (!empty($_POST)) {
-  $validator = new Validator($errorHandler);
-  $validation = $validator->check($_POST, [
-    'name' => [
-      'required' => true,
-      'maxlength' => 20,
-      'minlength' => 3
-    ],
-    'email' => [
-      'required' => true,
-      'maxlength' => 20,
-      'minlength' => 3,
-      'email' => true
-    ],
-    'message' => [
-      'required' => true,
-      'minlength' => 6,
-      'maxlength' => 900
-    ]
+  function died($error)
+  {
+    echo "Нам очень жаль, но в отправленной вами форме были обнаружены ошибки. ";
+    echo $error . "<br /><br />";
+    die();
+  }
 
-  ]);
+  if (!empty($_POST['website'])) die();
 
-  if ($validator->fails()) {
-    $errors = $validator->errors()->all();
-    //header('Location: '. '../feedback.php');
-  } else if (isset($_POST['email'])) {
-    $email_to = "koganaleksey@mail.ru";
-    $email_subject = "Отправка формы на сайте";
+  if (
+    !isset($_POST['name']) ||
+    !isset($_POST['email']) ||
+    !isset($_POST['message'])
+  ) {
+    died('Сожалеем, но, похоже, возникла проблема с отправленной вами формой.');
+  }
 
-    function died($error)
-    {
-      echo "Нам очень жаль, но в отправленной вами форме были обнаружены ошибки. ";
-      echo $error . "<br /><br />";
-      die();
-    }
+  $name = $_POST['name'];
+  $email_from = $_POST['email'];
+  $message = $_POST['message'];
 
-    if (!empty($_POST['website'])) die();
+  $error_message = "";
+  if (strlen($error_message) > 0) {
+    died($error_message);
+  }
+  $email_message = "Детали формы ниже.\n\n";
 
-    if (
-      !isset($_POST['name']) ||
-      !isset($_POST['email']) ||
-      !isset($_POST['message'])
-    ) {
-      died('Сожалеем, но, похоже, возникла проблема с отправленной вами формой.');
-    }
-
-    $name = $_POST['name'];
-    $email_from = $_POST['email'];
-    $message = $_POST['message'];
-
-    $error_message = "";
-    if (strlen($error_message) > 0) {
-      died($error_message);
-    }
-    $email_message = "Form details below.\n\n";
-
-    function clean_string($string)
-    {
-      $bad = array("content-type", "bcc:", "to:", "cc:", "href");
-      return str_replace($bad, "", $string);
-    }
+  function clean_string($string)
+  {
+    $bad = array("content-type", "bcc:", "to:", "cc:", "href");
+    return str_replace($bad, "", $string);
   }
 
   $email_message .= "Имя: " . clean_string($name) . "\n";
@@ -76,12 +47,12 @@ if (!empty($_POST)) {
   @mail($email_to, $email_subject, $email_message, $headers);
 ?>
 
-  <div class="d-flex justify-content-center align-items-center" style="width:100wv;height:100vh">
-    <p style="width:400px">Thank you for contacting us. We will be in touch with you soon. You will now be redirected back to example.com.</p>
+  <div class="d-flex justify-content-center align-items-center text-center" style="width:100wv;height:100vh">
+    <h2 class="ru" style="width:400px"><b>Благодарим Вас за обращение к нам.<b><br>Мы свяжемся с вами в ближайшее время. Теперь вы будете перенаправлены обратно на hiltm.com.</h2>
+    <h2 class="en" style="width:400px"><b>Thank you for contacting us.<b><br>We will be in touch with you soon. You will now be redirected back to hiltm.com.</h2>
   </div>
-  <META http-equiv="refresh" content="2;URL=http://hiltm.com">
 
-
+  <META http-equiv="refresh" content="5;URL=https://hiltm.com">
 
 <?php
 }
