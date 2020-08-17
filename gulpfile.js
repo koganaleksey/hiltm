@@ -29,6 +29,9 @@ const accessibility = require('gulp-accessibility');
 const babel = require('gulp-babel');
 const ghPages = require('gulp-gh-pages');
 const chalk = require('chalk');
+const ftp = require('vinyl-ftp');
+const gulpCssmin = require('gulp-cssmin');
+const gulpHtmlMinimizer = require('gulp-html-minimizer');
 const log = console.log;
 
 
@@ -146,7 +149,9 @@ function browserSyncInit(done) {
   return done();
 }
 
-// DEPLOY TO GIT
+// DEPLOY 
+
+// TO GIT
 function deploy() {
   return src('dist/**/*')
     .pipe(ghPages({
@@ -155,6 +160,23 @@ function deploy() {
       message: 'Automated push via gulp'
     }));
 }
+
+// TO HOSTING
+function ftpDeploy() {
+  const conn = ftp.create({
+    host: 'hiltm.beget.tech',
+    user: 'hiltm',
+    password: 'Gc5seP1x',
+    parallel: 10
+  });
+  const globs = [
+    'dist/**/*'
+  ];
+  return src(globs, { buffer: false })
+    .pipe(conn.dest('/hiltm/public_html/'));
+}
+
+// END DEPLOY
 
 // ------------ OPTIMIZATION TASKS -------------
 
@@ -337,7 +359,7 @@ function minifyCss() {
 exports.development = series(cleanDist, copyFont, copyPHP, copyFavicon, jsVendor, cssVendor, copyImages, compileHTML, compileJS, resetPages, prettyHTML, compileSCSS, browserSyncInit, watchFiles);
 
 // PRODUCTION & DEPLOY
-exports.production = series(cleanDist, compileSCSS, copyFont, copyPHP, copyFavicon, copyImages, compileHTML, concatScripts, minifyScripts, minifyCss, renameSources, prettyHTML, minifyHTML, generateDocs, browserSyncInit, deploy);
+exports.production = series(cleanDist, compileSCSS, copyFont, copyPHP, copyFavicon, copyImages, compileHTML, concatScripts, minifyScripts, minifyCss, renameSources, prettyHTML, minifyHTML, generateDocs, deploy, ftpDeploy);
 
 // RUN ALL LINTERS
 exports.lint = series(htmlLint, scssLint, jsLint);
