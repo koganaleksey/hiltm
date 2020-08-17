@@ -37,9 +37,9 @@ if (isset($_POST['email'])) {
     return str_replace($bad, "", $string);
   }
 
-  $email_message .= "Имя: " . clean_string($name) . "\n";
-  $email_message .= "Email: " . clean_string($email_from) . "\n";
-  $email_message .= "Сообщение: " . clean_string($message) . "\n";
+  $email_message .= "Имя: " . clean_string($name) . "\n\n";
+  $email_message .= "Email: " . clean_string($email_from) . "\n\n";
+  $email_message .= "Сообщение: " . clean_string($message);
 
   $headers = 'From: ' . $email_from . "\r\n" .
     'Reply-To: ' . $email_from . "\r\n" .
@@ -62,7 +62,7 @@ if (isset($_POST['email'])) {
   <body>
 
     <div class="d-flex justify-content-center align-items-center text-center" style="width:100vw;height:100vh">
-      <h3 style="width:400px;"><span class="font-weight-bold text-success">Спасибо, что связались с нами.</span><br><span class="font-weight-light">Мы свяжемся с вами в ближайшее время.<br>Теперь вы будете перенаправлены обратно на <a href="hiltm.com">hiltm.com.</a></span></h3>
+      <h3 style="width:400px;"><span class="font-weight-bold text-success">Спасибо, что связались с нами.</span><br><br><span class="font-weight-light">Мы свяжемся с вами в ближайшее время.<br>Теперь вы будете перенаправлены обратно на <a href="hiltm.com">hiltm.com.</a></span></h3>
     </div>
 
   </body>
