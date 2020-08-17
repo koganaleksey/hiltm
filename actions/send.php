@@ -47,12 +47,11 @@ if (isset($_POST['email'])) {
   @mail($email_to, $email_subject, $email_message, $headers);
 ?>
 
-  <div class="d-flex justify-content-center align-items-center text-center" style="width:100wv;height:100vh">
+  <div class="d-flex justify-content-center align-items-center text-center" style="width:100vw;height:100vh">
     <h2 class="ru" style="width:400px"><b>Благодарим Вас за обращение к нам.<b><br>Мы свяжемся с вами в ближайшее время. Теперь вы будете перенаправлены обратно на hiltm.com.</h2>
-    <h2 class="en" style="width:400px"><b>Thank you for contacting us.<b><br>We will be in touch with you soon. You will now be redirected back to hiltm.com.</h2>
   </div>
 
-  <META http-equiv="refresh" content="5;URL=https://hiltm.com">
+  <META http-equiv="refresh" content="2;URL=https://hiltm.com">
 
 <?php
 }
