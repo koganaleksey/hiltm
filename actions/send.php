@@ -1,76 +1,67 @@
 <?php
 
-header("Content-Type: text/html; charset=utf-8");
-header("Content-Transfer-Encoding: quoted printable" . "\r\n\r\n");
-
-if (isset($_POST['email'])) {
-  $email_to = "koganaleksey@mail.ru";
-  $email_subject = '=?utf-8?B?' . base64_encode("Отправка формы c сайта hiltm.com") . '?=';
-
-  function died($error)
-  {
-    echo '=?utf-8?B?' . base64_encode("Нам очень жаль, но в отправленной вами форме были обнаружены ошибки.") . '?=';
-    echo $error . "<br /><br />";
-    die();
+function send_mime_mail(
+  $name_from = $_POST['name'], // имя отправителя
+  $email_from = $_POST['email'], // email отправителя
+  $name_to = 'Hiltm', // имя получателя
+  $email_to = 'koganaleksey@mail.ru', // email получателя
+  $data_charset = 'CP1251', // кодировка переданных данных
+  $send_charset = 'KOI8-R', // кодировка письма
+  $subject = 'Отправка письма с сайта hiltm.com', // тема письма
+  $body = $_POST['message'], // текст письма
+  $html = FALSE, // письмо в виде html или обычного текста
+  $reply_to = FALSE
+) {
+  $to = mime_header_encode($name_to, $data_charset, $send_charset)
+    . ' <' . $email_to . '>';
+  $subject = mime_header_encode($subject, $data_charset, $send_charset);
+  $from =  mime_header_encode($name_from, $data_charset, $send_charset)
+    . ' <' . $email_from . '>';
+  if ($data_charset != $send_charset) {
+    $body = iconv($data_charset, $send_charset, $body);
   }
-
-  if (!empty($_POST['website'])) die();
-
-  if (
-    !isset($_POST['name']) ||
-    !isset($_POST['email']) ||
-    !isset($_POST['message'])
-  ) {
-    died('=?utf-8?B?' . base64_encode('Сожалеем, но, похоже, возникла проблема с отправленной вами формой.') . '?=');
+  $headers = "From: $from\r\n";
+  $type = ($html) ? 'html' : 'plain';
+  $headers .= "Content-type: text/$type; charset=$send_charset\r\n";
+  $headers .= "Mime-Version: 1.0\r\n";
+  if ($reply_to) {
+    $headers .= "Reply-To: $reply_to";
   }
+  return mail($to, $subject, $body, $headers);
+}
 
-  $name = $_POST['name'];
-  $email_from = $_POST['email'];
-  $message = $_POST['message'];
-
-  $error_message = "";
-  if (strlen($error_message) > 0) {
-    died($error_message);
+function mime_header_encode($str, $data_charset, $send_charset)
+{
+  if ($data_charset != $send_charset) {
+    $str = iconv($data_charset, $send_charset, $str);
   }
-  $email_message = '=?utf-8?B?' . base64_encode("Детали формы ниже" . "\n\n") . '?=';
+  return '=?' . $send_charset . '?B?' . base64_encode($str) . '?=';
+}
 
-  function clean_string($string)
-  {
-    $bad = array("content-type", "bcc:", "to:", "cc:", "href");
-    return str_replace($bad, "", $string);
-  }
-
-  $email_message .= '=?utf-8?B?' . base64_encode("Имя: \n\n") . clean_string(base64_encode($name)) . "\n\n" . '?=';
-  $email_message .= '=?utf-8?B?' . base64_encode("Email: \n\n") . clean_string(base64_encode($email_from)) . "\n\n" . '?=';
-  $email_message .= '=?utf-8?B?' . base64_encode("Сообщение: \n\n") . clean_string(base64_encode($message)) . '?=';
-
-  $headers = 'From: =?utf-8?B?' . base64_encode($email_from) . "\r\n" . '?=' .
-    'Reply-To: =?utf-8?B?' . base64_encode($email_from) . "\r\n" . '?=' .
-    'X-Mailer: PHP/' . phpversion();
-  @mail($email_to, $email_subject, $email_message, $headers);
 ?>
 
-  <!DOCTYPE html>
-  <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-  <head>
-    <meta charset="Content-Type: text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="refresh" content="6;URL=https://hiltm.com">
+<head>
+  <meta charset="Content-Type: text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="refresh" content="6;URL=https://hiltm.com">
 
-    <link rel="stylesheet" href="../assets/css/main.min.css">
-  </head>
+  <link rel="stylesheet" href="../assets/css/main.min.css">
+</head>
 
-  <body>
+<body>
 
-    <div class="d-flex justify-content-center align-items-center text-center" style="width:100vw;height:100vh">
-      <h3 style="width:400px;"><span class="font-weight-bold text-success">Спасибо, что связались с нами.</span><br><br><span class="font-weight-light">Мы свяжемся с вами в ближайшее время.<br>Теперь вы будете перенаправлены обратно на <a href="hiltm.com">hiltm.com.</a></span></h3>
-    </div>
+  <div class="d-flex justify-content-center align-items-center text-center" style="width:100vw;height:100vh">
+    <h3 style="width:400px;"><span class="font-weight-bold text-success">Спасибо, что связались с нами.</span><br><br><span class="font-weight-light">Мы свяжемся с вами в ближайшее время.<br>Теперь вы будете перенаправлены обратно на <a href="hiltm.com">hiltm.com.</a></span></h3>
+  </div>
 
-  </body>
+</body>
+
+</html>
 
 <?php
-}
 die();
 ?>
