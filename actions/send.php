@@ -5,7 +5,7 @@ if (!empty($_POST['website'])) die();
 $name = $_POST['name'];
 $email_from = $_POST['email'];
 $message = $_POST['message'];
-$succes_message = '<div><h3>Спасибо, что связались с нами.</h3><p>Мы свяжемся с вами в ближайшее время.</p><p>Теперь вы будете перенаправлены обратно на hiltm.com</p></div>';
+$success_message = '<div><h3>Спасибо, что связались с нами.</h3><p>Мы свяжемся с вами в ближайшее время.</p><p>Теперь вы будете перенаправлены обратно на hiltm.com</p></div>';
 
 $mail = array(
   'to' => "koganaleksey@mail.ru",
@@ -16,7 +16,7 @@ $mail = array(
 
 mail($mail['to'], $mail['subject'], $mail['message'], iconv('utf-8', 'windows-1251', $mail['headers']));
 
-echo iconv('utf-8', 'windows-1251', $succes_message);
+echo iconv('utf-8', 'windows-1251', $success_message);
 
 ?>
 
