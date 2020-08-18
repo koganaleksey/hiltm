@@ -14,18 +14,15 @@ $mail = array(
 );
 
 mail($mail['to'], $mail['subject'], $mail['message'], iconv('utf-8', 'windows-1251', $mail['headers']));
+
+echo '<h3 style="width:400px;"><span class="font-weight-bold text-success">Спасибо, что связались с нами.</span><br><br><span class="font-weight-light">Мы свяжемся с вами в ближайшее время.<br>Теперь вы будете перенаправлены обратно на <a href="hiltm.com">hiltm.com.</a></span></h3>'
 ?>
 
-<head>
-  <meta http-equiv="refresh" content="6;URL=https://hiltm.com">
-  <link rel="stylesheet" href="../assets/css/main.min.css">
-</head>
-
-<body>
-  <div class="d-flex justify-content-center align-items-center text-center" style="width:100vw;height:100vh">
-    <h3 style="width:400px;"><span class="font-weight-bold text-success">Спасибо, что связались с нами.</span><br><br><span class="font-weight-light">Мы свяжемся с вами в ближайшее время.<br>Теперь вы будете перенаправлены обратно на <a href="hiltm.com">hiltm.com.</a></span></h3>
-  </div>
-</body>
+<meta http-equiv="refresh" content="6;URL=https://hiltm.com">
+<!-- <link rel="stylesheet" href="../assets/css/main.min.css">
+<div class="d-flex justify-content-center align-items-center text-center" style="width:100vw;height:100vh">
+  <h3 style="width:400px;"><span class="font-weight-bold text-success">Спасибо, что связались с нами.</span><br><br><span class="font-weight-light">Мы свяжемся с вами в ближайшее время.<br>Теперь вы будете перенаправлены обратно на <a href="hiltm.com">hiltm.com.</a></span></h3>
+</div> -->
 
 <?php
 die();
