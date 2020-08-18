@@ -51,10 +51,10 @@ if (isset($_POST['email'])) {
 ?>
 
   <!DOCTYPE html>
-  <html lang="ru">
+  <html lang="en">
 
   <head>
-    <meta charset="utf-8">
+    <meta charset="Content-Type: text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="refresh" content="6;URL=https://hiltm.com">
