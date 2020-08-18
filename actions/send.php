@@ -1,14 +1,15 @@
 <?php
 
-header("Content-Type: text/html; charset=utf-8");
+header("Content-Type: text/plain; charset=utf-8");
+header("Content-Transfer-Encoding: quoted printable" . "\r\n\r\n");
 
 if (isset($_POST['email'])) {
   $email_to = "info@hiltm.com";
-  $email_subject = '=?utf-8?B?' . base64_encode("Отправка формы c сайта hiltm.com");
+  $email_subject = '=?utf-8?B?' . base64_encode("Отправка формы c сайта hiltm.com") . '?=';
 
   function died($error)
   {
-    echo "Нам очень жаль, но в отправленной вами форме были обнаружены ошибки. ";
+    echo '=?utf-8?B?' . base64_encode("Нам очень жаль, но в отправленной вами форме были обнаружены ошибки.") . '?=';
     echo $error . "<br /><br />";
     die();
   }
@@ -20,7 +21,7 @@ if (isset($_POST['email'])) {
     !isset($_POST['email']) ||
     !isset($_POST['message'])
   ) {
-    died('Сожалеем, но, похоже, возникла проблема с отправленной вами формой.');
+    died('=?utf-8?B?' . base64_encode('Сожалеем, но, похоже, возникла проблема с отправленной вами формой.') . '?=');
   }
 
   $name = $_POST['name'];
@@ -31,7 +32,7 @@ if (isset($_POST['email'])) {
   if (strlen($error_message) > 0) {
     died($error_message);
   }
-  $email_message = "Детали формы ниже.\n\n";
+  $email_message = '=?utf-8?B?' . base64_encode("Детали формы ниже" . "\n\n") . '?=';
 
   function clean_string($string)
   {
@@ -39,12 +40,12 @@ if (isset($_POST['email'])) {
     return str_replace($bad, "", $string);
   }
 
-  $email_message .= "Имя: " . clean_string($name) . "\n\n";
-  $email_message .= "Email: " . clean_string($email_from) . "\n\n";
-  $email_message .= "Сообщение: " . clean_string($message);
+  $email_message .= '=?utf-8?B?' . base64_encode("Имя: \n\n") . clean_string(base64_encode($name)) . "\n\n" . '?=';
+  $email_message .= '=?utf-8?B?' . base64_encode("Email: \n\n") . clean_string(base64_encode($email_from)) . "\n\n" . '?=';
+  $email_message .= '=?utf-8?B?' . base64_encode("Сообщение: \n\n") . clean_string(base64_encode($message)) . '?=';
 
-  $headers = 'From: =?utf-8?B?' . base64_encode($email_from) . "\r\n" .
-    'Reply-To: =?utf-8?B?' . base64_encode($email_from) . "\r\n" .
+  $headers = 'From: =?utf-8?B?' . base64_encode($email_from) . "\r\n" . '?=' .
+    'Reply-To: =?utf-8?B?' . base64_encode($email_from) . "\r\n" . '?=' .
     'X-Mailer: PHP/' . phpversion();
   @mail($email_to, $email_subject, $email_message, $headers);
 ?>
