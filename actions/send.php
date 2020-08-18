@@ -5,7 +5,7 @@ if (!empty($_POST['website'])) die();
 $name = $_POST['name'];
 $email_from = $_POST['email'];
 $message = $_POST['message'];
-$succes_message = 'Спасибо, что связались с нами.\r\nМы свяжемся с вами в ближайшее время.\r\nТеперь вы будете перенаправлены обратно на hiltm.com';
+$succes_message = '<div><h3>Спасибо, что связались с нами.</h3><p>Мы свяжемся с вами в ближайшее время.</p><p>Теперь вы будете перенаправлены обратно на hiltm.com</p></div>';
 
 $mail = array(
   'to' => "koganaleksey@mail.ru",
