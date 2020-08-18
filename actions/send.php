@@ -1,4 +1,4 @@
-<?
+<?php
 
 if (!empty($_POST['website'])) die();
 
@@ -9,7 +9,7 @@ $message = $_POST['message'];
 $mail = array(
   'to' => "koganaleksey@mail.ru",
   'subject' => "Сообщение с сайта hiltm.com",
-  'message' => "Имя: " . $name . "\n\n" . "Email: " . $email_from . "\n\n" . "Сообщение: " . "\n\n" . $message,
+  'message' => "Имя: " . $name . "\n\n" . "Email: " . $email_from . "\n\n" . "Сообщение: " . "\r\n" . $message,
   'headers' => "MIME-Version: 1.0\r\n" . "Content-type: text/plain; charset=utf-8\r\n" . "From: <hiltm.com>\r\n"
 );
 
