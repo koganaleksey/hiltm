@@ -39,29 +39,3 @@ function mime_header_encode($str, $data_charset, $send_charset)
 }
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="Content-Type: text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta http-equiv="refresh" content="6;URL=https://hiltm.com">
-
-  <link rel="stylesheet" href="../assets/css/main.min.css">
-</head>
-
-<body>
-
-  <div class="d-flex justify-content-center align-items-center text-center" style="width:100vw;height:100vh">
-    <h3 style="width:400px;"><span class="font-weight-bold text-success">Спасибо, что связались с нами.</span><br><br><span class="font-weight-light">Мы свяжемся с вами в ближайшее время.<br>Теперь вы будете перенаправлены обратно на <a href="hiltm.com">hiltm.com.</a></span></h3>
-  </div>
-
-</body>
-
-</html>
-
-<?php
-die();
-?>
