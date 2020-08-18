@@ -10,7 +10,7 @@ $success_message = '<div class="d-flex justify-content-center align-items-center
 </div>';
 
 $mail = array(
-  'to' => "koganaleksey@mail.ru",
+  'to' => "info@hiltm.com",
   'subject' => "Сообщение с сайта hiltm.com",
   'message' => "Имя: " . $name . "\n\n" . "Email: " . $email_from . "\n\n" . "Сообщение: " . "\r\n" . $message,
   'headers' => "MIME-Version: 1.0\r\n" . "Content-type: text/plain; charset=utf-8\r\n" . "From: <hiltm.com>\r\n"
@@ -24,6 +24,7 @@ echo iconv('utf-8', 'windows-1251', $success_message);
 
 <head>
   <meta http-equiv="refresh" content="7;URL=https://hiltm.com">
+  <title>Спасибо, что связались с нами.</title>
   <link rel="stylesheet" href="../assets/css/main.min.css">
 </head>
 
