@@ -1,8 +1,10 @@
 <?php
 
+header("Content-Type: text/html; charset=utf-8");
+
 if (isset($_POST['email'])) {
   $email_to = "info@hiltm.com";
-  $email_subject = "Отправка формы c сайта hiltm.com";
+  $email_subject = '=?utf-8?B?' . base64_encode("Отправка формы c сайта hiltm.com");
 
   function died($error)
   {
@@ -41,8 +43,8 @@ if (isset($_POST['email'])) {
   $email_message .= "Email: " . clean_string($email_from) . "\n\n";
   $email_message .= "Сообщение: " . clean_string($message);
 
-  $headers = 'From: ' . $email_from . "\r\n" .
-    'Reply-To: ' . $email_from . "\r\n" .
+  $headers = 'From: =?utf-8?B?' . base64_encode($email_from) . "\r\n" .
+    'Reply-To: =?utf-8?B?' . base64_encode($email_from) . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
   @mail($email_to, $email_subject, $email_message, $headers);
 ?>
