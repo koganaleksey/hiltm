@@ -5,7 +5,9 @@ if (!empty($_POST['website'])) die();
 $name = $_POST['name'];
 $email_from = $_POST['email'];
 $message = $_POST['message'];
-$success_message = '<div><h3>Спасибо, что связались с нами.</h3><p>Мы свяжемся с вами в ближайшее время.</p><p>Теперь вы будете перенаправлены обратно на hiltm.com</p></div>';
+$success_message = '<div class="d-flex justify-content-center align-items-center text-center" style="width:100vw;height:100vh">
+<h3 style="width:400px;"><span class="font-weight-bold text-success">Спасибо, что связались с нами.</span><br><br><span class="font-weight-light">Мы свяжемся с вами в ближайшее время.<br>Теперь вы будете перенаправлены обратно на <a href="hiltm.com">hiltm.com.</a></span></h3>
+</div>';
 
 $mail = array(
   'to' => "koganaleksey@mail.ru",
@@ -20,11 +22,10 @@ echo iconv('utf-8', 'windows-1251', $success_message);
 
 ?>
 
-<meta http-equiv="refresh" content="6;URL=https://hiltm.com">
-<!-- <link rel="stylesheet" href="../assets/css/main.min.css">
-<div class="d-flex justify-content-center align-items-center text-center" style="width:100vw;height:100vh">
-  <h3 style="width:400px;"><span class="font-weight-bold text-success">Спасибо, что связались с нами.</span><br><br><span class="font-weight-light">Мы свяжемся с вами в ближайшее время.<br>Теперь вы будете перенаправлены обратно на <a href="hiltm.com">hiltm.com.</a></span></h3>
-</div> -->
+<head>
+  <meta http-equiv="refresh" content="7;URL=https://hiltm.com">
+  <link rel="stylesheet" href="../assets/css/main.min.css">
+</head>
 
 <?php
 die();
