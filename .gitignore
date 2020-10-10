@@ -49,9 +49,10 @@ package-lock.json
 ### Custom Files ###
 dist/
 accessibility-reports/
+sources/
 
 ### images
-shutterstock
+shutterstock/
 
 ### publish
 .publish
