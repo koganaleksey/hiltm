@@ -17826,8 +17826,9 @@ $(document).ready(function () {
   });
   // End // Slow Links
 
-  $(".profile_link").on("click", "a", function (event) {
-    event.preventDefault();
+  $(".profile_link").on("click", function (event) {
+    document.location.href =
+      "/assets/files/Hil_Gurlusyk_Company_Profile_latest_version.pdf";
   });
 
   // Form Validation
