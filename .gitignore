@@ -50,6 +50,7 @@ package-lock.json
 dist/
 accessibility-reports/
 sources/
+docs/
 
 ### images
 shutterstock/
