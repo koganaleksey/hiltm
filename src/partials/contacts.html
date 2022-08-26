@@ -1,0 +1,95 @@
+<div class="row">
+
+    <div class="col-md-6 h-100">
+
+        <h2 class="ru display-2 text-center text-md-left mb-4 text-uppercase">КОНТАКТЫ</h2>
+        <h2 class="en display-2 text-center text-md-left mb-4 text-uppercase">CONTACTS</h2>
+
+        <div class="row justify-content-center justify-content-start">
+            <div class="col-12 col-sm-5 col-md-6 mb-3 text-center text-md-left">
+
+                <h3 class="ru">ХО «Хил Гурлушык»</h3>
+                <h3 class="en">ES «Hil Gurlushyk»</h3>
+
+                <p class="ru font-weight-bold text-primary mb-0">Адрес:</p>
+                <p class="en font-weight-bold text-primary mb-0">Address:</p>
+
+                <p class="ru ">Офисное здание № 30,<br>
+                    Улица 2127 (Г. Кулиева),<br>
+                    Ашхабад, Туркменистан</p>
+
+                <p class="en ">Office building № 30,<br>
+                    Street 2127 (G. Kuliev),<br>
+                    Ashgabat, Turkmenistan</p>
+
+            </div>
+
+            <div class="col-12 col-sm-5 col-md-6 mb-5 mb-md-4">
+                <div class="d-flex d-md-block justify-content-center justify-content-md-start">
+                    <p class="text-primary">E-mail:&nbsp;</p>
+                    <a href="mailto:info@hiltm.com" class="mb-2 d-block">info@hiltm.com</a>
+                </div>
+
+                <div class="d-flex d-md-block justify-content-center justify-content-md-start">
+                    <p class="ru text-primary">Телефон:&nbsp;</p>
+                    <p class="en text-primary">Phone:&nbsp;</p>
+                    <a href="tel:+99312754422" class="mb-2 d-block">+993 12 75-44-22</a>
+                </div>
+
+                <div class="d-flex d-md-block justify-content-center justify-content-md-start">
+                    <p class="ru text-primary">Факс:&nbsp;</p>
+                    <p class="en text-primary">Fax:&nbsp;</p>
+                    <a href="tel:+99312754664" class="d-block">+993 12 75-46-64</a>
+                </div>
+            </div>
+
+            <div class="col-12 mb-5 m-md-0">
+                <div class="mapouter">
+                    <div class="gmap_canvas"><iframe id="gmap_canvas"
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2957.471663088163!2d58.4250314!3d37.9561714!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDU3JzI2LjQiTiA1OMKwMjUnMjkuMyJF!5e1!3m2!1sen!2sin!4v1597053019588!5m2!1sen!2sin"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6 px-md-5">
+
+        <h3 class="ru display-3 text-center text-md-left">Напишите нам</h3>
+        <h3 class="en display-3 text-center text-md-left">Write to us</h3>
+
+        <form action="{{root}}actions/send.php" method="POST" class="needs-validation" novalidate>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <label for="name"><span class="ru">Имя</span><span class="en">Name</span></label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                    <div class="invalid-feedback">
+                        Пожалуйста введите Ваше Имя
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                    <p class="ru small">Мы никогда не передадим вашу электронную почту кому-либо еще.</p>
+                    <p class="en small">We will never share your email with anyone else.</p>
+                    <div class="invalid-feedback">
+                        Пожалуйста введите Ваш Email
+                    </div>
+                </div>
+                <input type="text" id="website" name="website" style="display:none" />
+                <div class="col-md-12 mb-3">
+                    <label for="message"><span class="ru">Сообщение</span><span class="en">Message</span></label>
+                    <textarea class="form-control" id="message" name="message" rows="7" required></textarea>
+                    <div class="invalid-feedback">
+                        Пожалуйста введите Ваше сообщение
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit"><span class="ru">Отправить</span><span
+                    class="en">Send</span></button>
+        </form>
+
+    </div>
+</div>
