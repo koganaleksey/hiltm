@@ -1,6 +1,10 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the footer of the site/application.
 // -----------------------------------------------------------------------------
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/functions" as *;
+
 .footer {
-    border-top: 1px solid $gray-100
+  border-top: 1px solid $gray-100;
 }

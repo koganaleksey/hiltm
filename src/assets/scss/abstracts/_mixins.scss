@@ -2,6 +2,9 @@
 // This file contains all application-wide Sass mixins.
 // -----------------------------------------------------------------------------
 
+@use "../abstracts/variables" as *;
+@use "../abstracts/functions" as *;
+
 // ASPECT RATIO
 @mixin aspect-ratio($width, $height) {
   position: relative;
@@ -51,8 +54,9 @@
   }
 }
 
+// Media query mixins
 @mixin media-min($min) {
-  @media screen and (min-width: #{ $min }) {
+  @media screen and (min-width: #{$min}) {
     @content;
   }
 }
@@ -69,23 +73,27 @@
   }
 }
 
+// Utility function to strip units from a value
 @function strip-unit($value) {
   @return $value / ($value * 0 + 1);
 }
 
-
+// Fluid typography mixin
 @mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
   $u1: unit($min-vw);
   $u2: unit($max-vw);
   $u3: unit($min-font-size);
   $u4: unit($max-font-size);
 
-  @if $u1==$u2 and $u1==$u3 and $u1==$u4 {
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
     & {
       font-size: $min-font-size;
 
       @media screen and (min-width: $min-vw) {
-        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+        font-size: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+        );
       }
 
       @media screen and (min-width: $max-vw) {
@@ -93,4 +101,17 @@
       }
     }
   }
+}
+
+@mixin media-breakpoint-up($size) {
+  @if $size == lg {
+    @media (min-width: 992px) {
+      @content;
+    }
+  }
+  // Other breakpoints as needed
+}
+
+@mixin font-size($size) {
+  font-size: $size;
 }

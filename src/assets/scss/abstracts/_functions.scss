@@ -2,6 +2,8 @@
 // This file contains all application-wide Sass functions.
 // -----------------------------------------------------------------------------
 
+@use "../abstracts/variables" as *;
+
 /// Native `url(..)` function wrapper
 /// @param {String} $base - base URL for the asset
 /// @param {String} $type - asset type folder (e.g. `fonts/`)
@@ -17,7 +19,7 @@
 /// @return {Url}
 /// @require $base-url
 @function image($path, $base: $base-url) {
-  @return asset($base, 'images/', $path);
+  @return asset($base, "images/", $path);
 }
 
 /// Returns URL to a font based on its path
@@ -26,5 +28,5 @@
 /// @return {Url}
 /// @require $base-url
 @function font($path, $base: $base-url) {
-  @return asset($base, 'fonts/', $path);
+  @return asset($base, "fonts/", $path);
 }
