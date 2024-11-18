@@ -2,7 +2,6 @@
 // Importing specific gulp API functions lets us write them below as series() instead of gulp.series()
 
 "use strict";
-const gulp = require("gulp");
 const { src, dest, watch, series, parallel } = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
 const colors = require("ansi-colors");
@@ -35,31 +34,6 @@ const ftp = require("vinyl-ftp");
 const gulpCssmin = require("gulp-cssmin");
 const gulpHtmlMinimizer = require("gulp-html-minimizer");
 const log = console.log;
-
-// // Функция для добавления CSP заголовков
-// function addCSPHeaders(req, res, next) {
-//   // Проверяем, что объект ответа (res) существует
-//   if (res) {
-//     // Устанавливаем CSP заголовок
-//     res.setHeader(
-//       "Content-Security-Policy",
-//       "default-src 'self'; script-src 'self' 'nonce-XYZ'; style-src 'self' 'unsafe-inline';"
-//     );
-//   }
-//   return next(); // Переходим к следующему middleware или запросу
-// }
-
-// // Задача для запуска сервера с добавлением CSP заголовков
-// gulp.task("serve", function () {
-//   browserSync.init({
-//     server: {
-//       baseDir: "./", // Укажите папку для вашего проекта
-//       middleware: [addCSPHeaders], // Добавляем middleware для CSP
-//     },
-//     notify: false, // Отключаем уведомления
-//     open: false, // Отключаем автоматическое открытие браузера
-//   });
-// });
 
 // File paths
 const files = {
@@ -204,7 +178,7 @@ function ftpDeploy() {
   const conn = ftp.create({
     host: "hiltm.beget.tech",
     user: "hiltm",
-    password: "Gc5seP1x",
+    password: "3HE*O*gX",
     parallel: 10,
   });
   const globs = ["dist/**/*"];
